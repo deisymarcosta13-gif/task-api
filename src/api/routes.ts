@@ -20,6 +20,11 @@ router.get("/protected", authMiddleware, (req, res) => {
 });
 
 //CRUD DE TAREAS
-
+//ruta agregar tareas
 router.post("/tasks", authMiddleware, taskController.createTask);
+//ruta ver tareas
+router.get("/tasks", authMiddleware, taskController.getTasks);
+
+
 export default router;
+

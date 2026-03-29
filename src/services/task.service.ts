@@ -15,3 +15,7 @@ export const createTask = async (
 
   return { taskId };
 };
+
+export const getTasks = async (user_id: number) => {
+  return await taskRepo.getTasksByUser(user_id);
+};

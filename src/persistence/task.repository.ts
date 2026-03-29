@@ -20,3 +20,10 @@ export const createTask = async (
 
   return result.insertId;
 };
+
+export const getTasksByUser = async (user_id: number) => {
+  const query = "SELECT * FROM tasks WHERE user_id = ?";
+  const [rows]: any = await db.execute(query, [user_id]);
+  return rows;
+};
+
