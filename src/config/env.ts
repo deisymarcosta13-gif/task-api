@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import path from "path";
 
-// 🔥 FORZAMOS lectura del .env correctamente
+// FORZAMOS lectura del .env correctamente
 dotenv.config({
   path: path.resolve(process.cwd(), ".env")
 });
