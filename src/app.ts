@@ -1,6 +1,7 @@
 import express from "express";
 import { env } from "./config/env";
 import { db } from "./persistence/mysql.connection";
+import routes from "./api/routes";
 
 const app = express();
 
@@ -26,3 +27,5 @@ app.get("/", async (req, res) => {
 app.listen(env.PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${env.PORT}`);
 });
+
+app.use("/api", routes);
