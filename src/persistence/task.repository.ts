@@ -59,3 +59,11 @@ export const updateTaskById = async (
 
   return result.affectedRows; // 1 si actualizó, 0 si no encontró
 };
+
+//eliminar tarea por id
+
+export const deleteTaskById = async (id: number) => {
+  const query = "DELETE FROM tasks WHERE id = ?";
+  const [result]: any = await db.execute(query, [id]);
+  return result.affectedRows; // retorna 0 si no se eliminó nada
+};

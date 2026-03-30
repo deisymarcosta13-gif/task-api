@@ -65,3 +65,19 @@ export const updateTask = async (
 
   return { taskId };
 };
+
+//eliminar tarea por  id
+export const deleteTask = async (taskId: number, userId: number) => {
+  const task = await taskRepo.getTaskById(taskId);
+
+  if (!task) {
+    throw new NotFoundError("Tarea no encontrada");
+  }
+
+  if (task.user_id !== userId) {
+    throw new NotFoundError("Tarea no pertenece al usuario");
+  }
+
+  const deleted = await taskRepo.deleteTaskById(taskId);
+  return { deleted };
+};

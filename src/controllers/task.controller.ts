@@ -96,3 +96,23 @@ export const updateTask = async (req: AuthRequest, res: Response) => {
     });
   }
 };
+
+// eliminar tarea or id
+
+export const deleteTask = async (req: AuthRequest, res: Response) => {
+  try {
+    const user = req.user;
+    const taskId = parseInt(String(req.params.id), 10);
+
+    const result = await taskService.deleteTask(taskId, user.id);
+
+    res.json({
+      message: "Tarea eliminada",
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(error.status || 500).json({
+      message: error.message,
+    });
+  }
+};

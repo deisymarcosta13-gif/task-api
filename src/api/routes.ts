@@ -26,6 +26,8 @@ router.get("/tasks", authMiddleware, taskController.getTasks);
 router.get("/tasks/:id", authMiddleware, taskController.getTaskDetail);
 // Actualizar tarea
 router.put("/tasks/:id", authMiddleware, taskController.updateTask);
+// liminar tarea por id
+router.delete("/tasks/:id", authMiddleware, taskController.deleteTask);
 
 export default router;
 
