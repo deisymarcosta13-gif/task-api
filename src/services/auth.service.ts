@@ -19,7 +19,7 @@ const registerSchema = {
   additionalProperties: false
 };
 
-// Función para validar
+// Función para validar que los datos sean validos 
 const validateRegister = (data: any) => {
   const validate = ajv.compile(registerSchema);
   const valid = validate(data);
