@@ -34,3 +34,34 @@ export const getTask = async (taskId: number, userId: number) => {
 
   return task;
 };
+
+//actualizar tarea por id
+
+export const updateTask = async (
+  taskId: number,
+  userId: number,
+  title: string,
+  description: string,
+  due_date: string,
+  status: "pendiente" | "en curso" | "completada"
+) => {
+  // Primero, verificamos que la tarea existe y pertenece al usuario
+  const task = await taskRepo.getTaskById(taskId);
+  if (!task) throw new NotFoundError("Tarea no encontrada");
+  if (task.user_id !== userId)
+    throw new NotFoundError("Tarea no pertenece al usuario");
+
+  const affectedRows = await taskRepo.updateTaskById(
+    taskId,
+    title,
+    description,
+    due_date,
+    status,
+    userId
+  );
+
+  if (affectedRows === 0)
+    throw new Error("No se pudo actualizar la tarea");
+
+  return { taskId };
+};

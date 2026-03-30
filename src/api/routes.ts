@@ -24,6 +24,8 @@ router.post("/tasks", authMiddleware, taskController.createTask);
 router.get("/tasks", authMiddleware, taskController.getTasks);
 //ruta ver detalle tarea por id
 router.get("/tasks/:id", authMiddleware, taskController.getTaskDetail);
+// Actualizar tarea
+router.put("/tasks/:id", authMiddleware, taskController.updateTask);
 
 export default router;
 

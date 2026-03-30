@@ -33,3 +33,29 @@ export const getTaskById = async (id: number) => {
   return rows[0]; // retorna un solo objeto o undefined
 };
 
+// Actualizar tarea por id
+export const updateTaskById = async (
+  id: number,
+  title: string,
+  description: string,
+  due_date: string,
+  status: "pendiente" | "en curso" | "completada",
+  user_id: number
+) => {
+  const query = `
+    UPDATE tasks 
+    SET title = ?, description = ?, due_date = ?, status = ?
+    WHERE id = ? AND user_id = ?
+  `;
+
+  const [result]: any = await db.execute(query, [
+    title,
+    description,
+    due_date,
+    status,
+    id,
+    user_id
+  ]);
+
+  return result.affectedRows; // 1 si actualizó, 0 si no encontró
+};

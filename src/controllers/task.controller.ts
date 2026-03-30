@@ -67,3 +67,32 @@ export const getTaskDetail = async (req: AuthRequest, res: Response) => {
     });
   }
 };
+
+
+// Editar tarea por id
+export const updateTask = async (req: AuthRequest, res: Response) => {
+  try {
+    const user = req.user;
+    const taskId = parseInt(String(req.params.id), 10);
+
+    const { title, description, due_date, status } = req.body;
+
+    const result = await taskService.updateTask(
+      taskId,
+      user.id,
+      title,
+      description,
+      due_date,
+      status
+    );
+
+    res.json({
+      message: "Tarea actualizada",
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(error.status || 500).json({
+      message: error.message,
+    });
+  }
+};
