@@ -1,5 +1,14 @@
 import { db } from "./mysql.connection";
 
+/**
+ * Nota:
+ * MySQL usa "?" para parámetros:
+ * SELECT * FROM users WHERE email = ?
+ * 
+ * PostgreSQL usa "$1":
+ * SELECT * FROM users WHERE email = $1
+ */
+
 export const createTask = async (
   title: string,
   description: string,

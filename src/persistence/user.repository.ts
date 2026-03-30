@@ -1,5 +1,14 @@
 import { db } from "./mysql.connection";
 
+/**
+ * Nota:
+ * MySQL usa "?" para parámetros:
+ * SELECT * FROM users WHERE email = ?
+ * 
+ * PostgreSQL usa "$1":
+ * SELECT * FROM users WHERE email = $1
+ */
+
 export const createUser = async (name: string, email: string, password: string) => {
   const query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
   const [result]: any = await db.execute(query, [name, email, password]);
