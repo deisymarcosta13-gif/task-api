@@ -27,3 +27,9 @@ export const getTasksByUser = async (user_id: number) => {
   return rows;
 };
 
+export const getTaskById = async (id: number) => {
+  const query = "SELECT * FROM tasks WHERE id = ?";
+  const [rows]: any = await db.execute(query, [id]);
+  return rows[0]; // retorna un solo objeto o undefined
+};
+

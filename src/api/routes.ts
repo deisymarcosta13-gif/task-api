@@ -5,8 +5,6 @@ import * as taskController from "../controllers/task.controller";
 
 const router = Router();
 
-router.post("/tasks", authMiddleware, taskController.createTask);
-
 //rutas de autenticacion
 router.post("/auth/register", authController.register);
 router.post("/auth/login", authController.login);
@@ -24,7 +22,8 @@ router.get("/protected", authMiddleware, (req, res) => {
 router.post("/tasks", authMiddleware, taskController.createTask);
 //ruta ver tareas
 router.get("/tasks", authMiddleware, taskController.getTasks);
-
+//ruta ver detalle tarea por id
+router.get("/tasks/:id", authMiddleware, taskController.getTaskDetail);
 
 export default router;
 

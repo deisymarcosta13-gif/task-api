@@ -45,3 +45,25 @@ export const getTasks = async (req: AuthRequest, res: Response) => {
     });
   }
 };
+
+//ver detalle tarea por id 
+
+export const getTaskDetail = async (req: AuthRequest, res: Response) => {
+  try {
+    const user = req.user;
+
+    // Convertimos req.params.id a string por seguridad y luego a número
+    const taskId = parseInt(String(req.params.id), 10);
+
+    const task = await taskService.getTask(taskId, user.id);
+
+    res.json({
+      message: "Detalle de la tarea",
+      data: task,
+    });
+  } catch (error: any) {
+    res.status(error.status || 500).json({
+      message: error.message,
+    });
+  }
+};
