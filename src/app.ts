@@ -2,10 +2,16 @@ import express from "express";
 import { env } from "./config/env";
 import { db } from "./persistence/mysql.connection";
 import routes from "./api/routes";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./config/swagger";
 
 const app = express();
 
 app.use(express.json());
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+console.log("Documentación disponible en /api-docs");
 
 app.get("/", async (req, res) => {
   try {
